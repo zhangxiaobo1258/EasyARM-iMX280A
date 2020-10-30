@@ -418,6 +418,7 @@
 		compatible = "gpio-beep";
 		pinctrl-names = "default";
 		pinctrl-0 = <&beep_pin_gpio2_6>;
+		beep-gpio = <&gpio2 6 0>;
 		status = "okay";
 	};
 
