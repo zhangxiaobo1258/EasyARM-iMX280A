@@ -1,0 +1,2 @@
+
+sudo make CROSS_COMPILE=arm-linux-gnueabi- BOARD=iMX28_EVK
