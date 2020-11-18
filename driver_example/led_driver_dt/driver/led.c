@@ -136,14 +136,14 @@ static int __init beep_init(void)
 	/*2.获取设备树中gpio的属性*/
 	beep.beep_gpio = of_get_named_gpio(beep.nd,"beep-gpio",0);
 	if(beep.beep_gpio <0 ){
-		printk("beep-gpio find faibeep!\r\n");
+		printk("beep-gpio find failed!\r\n");
 		return -EINVAL;
 	}
 	printk("beep-gpio num = %d\r\n",beep.beep_gpio);
 	/*3.设置beep对应的gpio为输出*/
 	retvalue = gpio_direction_output(beep.beep_gpio,1);
 	if(retvalue < 0){
-		printk("Set Beep faibeep!\r\n");
+		printk("Set Beep failed!\r\n");
 	}
 	
 	/*3.注册字符设备驱动*/
