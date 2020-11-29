@@ -17,90 +17,71 @@
 	compatible = "fsl,imx28-evk", "fsl,imx28";
 
 	memory {
-		/*reg = <0x40000000 0x08000000>;*/
+		/* DDR默认存储器，存储空间64MB */
 		reg = <0x40000000 0x04000000>;
 	};
 
 	apb@80000000 {
 		apbh@80000000 {
+			/* NAND flash管脚配置 */
 			gpmi-nand@8000c000 {
 				pinctrl-names = "default";
-				pinctrl-0 = <&gpmi_pins_a &gpmi_status_cfg
-					     &gpmi_pins_evk>;
+				pinctrl-0 = <&gpmi_pins_a>;
 				status = "okay";
 			};
-
+			/* TF卡管脚配置 */
 			ssp0: ssp@80010000 {
 				compatible = "fsl,imx28-mmc";
 				pinctrl-names = "default";
-				/*pinctrl-0 = <&mmc0_8bit_pins_a
-					&mmc0_cd_cfg &mmc0_sck_cfg>;*/
-				pinctrl-0 = <&mmc0_4bit_pins_a
-					&mmc0_cd_cfg &mmc0_sck_cfg
-				>;
-
-				/*bus-width = <8>;*/
+				pinctrl-0 = <&mmc0_4bit_pins_a>;
 				bus-width = <4>;
-				/*wp-gpios = <&gpio2 12 0>;*/
-				wp-gpios = <&gpio0 17 0>;
+				/* TF卡写保护配置 */
+				wp-gpios = <&gpio0 17 0>;			
 				vmmc-supply = <&reg_vddio_sd0>;
 				status = "okay";
 			};
-
-			/*ssp1: ssp@80012000 {
-				compatible = "fsl,imx28-mmc";
-				bus-width = <8>;
-				wp-gpios = <&gpio0 28 0>;
-			};
-
-			ssp2: ssp@80014000 {
+			/* AP-283Demo板的数码管显示管脚配置 */
+			ssp2: ssp@80014000{
 				#address-cells = <1>;
 				#size-cells = <0>;
 				compatible = "fsl,imx28-spi";
 				pinctrl-names = "default";
 				pinctrl-0 = <&spi2_pins_a>;
+				/* 数码管RCK管脚配置,初始值为低电平 */
+				rck-gpios = <&gpio3 21 0>;
 				status = "okay";
 
-				flash: m25p80@0 {
+				/* 扩展的NOR flash:mx25l1635EM2I相关配置 */
+				flash: mx25l16@0 {
 					#address-cells = <1>;
 					#size-cells = <1>;
-					compatible = "sst,sst25vf016b", "jedec,spi-nor";
-					spi-max-frequency = <40000000>;
+					compatible = "mxic,mx25l1635em2i","jedec,spi-nor";
+					/* 该flash的最大频率为80MHz */
+					spi-max-frequency = <80000000>;
 					reg = <0>;
 				};
-			};*/
+			};
+
+			ssp3: ssp@80016000 {
+				#address-cells = <1>;
+				#size-cells = <0>;
+				compatible = "fsl,imx28-spi";
+				pinctrl-names = "default";
+				pinctrl-0 = <&spi3_pins_a>;
+				status = "okay";
+				/* 如果使用SPI3与外扩flash通信，打开该部分配置 */
+				/*flash: mx25l16@0 {
+					#address-cells = <1>;
+					#size-cells = <1>;
+					compatible = "mxic,mx25l1635em2i", "jedec,spi-nor";
+					spi-max-frequency = <80000000>;
+					reg = <0>;
+				};*/
+			};
 
 			pinctrl@80018000 {
 				pinctrl-names = "default";
-				pinctrl-0 = <&hog_pins_a>;
-
-				hog_pins_a: hog@0 {
-					reg = <0>;
-					fsl,pinmux-ids = <
-						MX28_PAD_SSP1_CMD__GPIO_2_13
-						MX28_PAD_SSP1_DATA3__GPIO_2_15
-						MX28_PAD_ENET0_RX_CLK__GPIO_4_13
-						MX28_PAD_SSP1_SCK__GPIO_2_12
-						MX28_PAD_PWM3__GPIO_3_28
-						MX28_PAD_LCD_RESET__GPIO_3_30
-						/*MX28_PAD_AUART2_RX__GPIO_3_8
-						MX28_PAD_AUART2_TX__GPIO_3_9*/
-					>;
-					fsl,drive-strength = <MXS_DRIVE_4mA>;
-					fsl,voltage = <MXS_VOLTAGE_HIGH>;
-					fsl,pull-up = <MXS_PULL_DISABLE>;
-				};
-
-				led_pin_gpio3_5: led_gpio3_5@0 {
-					reg = <0>;
-					fsl,pinmux-ids = <
-						MX28_PAD_AUART1_TX__GPIO_3_5
-					>;
-					fsl,drive-strength = <MXS_DRIVE_4mA>;
-					fsl,voltage = <MXS_VOLTAGE_HIGH>;
-					fsl,pull-up = <MXS_PULL_DISABLE>;
-				};
-				/*根据EasyARM-imx280A增加蜂鸣器*/
+				/* 根据EasyARM-imx280A增加蜂鸣器 */
 				beep_pin_gpio2_6:beep_gpio2_6@0{
 					reg = <0>;
 					fsl,pinmux-ids = <
@@ -110,7 +91,7 @@
 					fsl,voltage = <MXS_VOLTAGE_LOW>;
 					fsl,pull-up = <MXS_PULL_DISABLE>;
 				};
-				/*根据EasyARM-imx280A修改了usr led的gpio口*/
+				/* 根据EasyARM-imx280A修改了usr run led的gpio口,即heartbeat灯 */
 				led_pin_gpio2_7:led_gpio2_7@0{
 					reg = <0>;
 					fsl,pinmux-ids = <
@@ -120,7 +101,7 @@
 					fsl,voltage = <MXS_VOLTAGE_HIGH>;
 					fsl,pull-up = <MXS_PULL_DISABLE>;
 				};
-				/*根据EasyARM-imx280A修改了heartbeat led的gpio口*/
+				/* 根据EasyARM-imx280A修改了err led的gpio口*/
 				led_pin_gpio3_20: led_gpio3_20@0 {
 					reg = <0>;
 					fsl,pinmux-ids = <
@@ -130,163 +111,97 @@
 					fsl,voltage = <MXS_VOLTAGE_HIGH>;
 					fsl,pull-up = <MXS_PULL_DISABLE>;
 				};
-				gpmi_pins_evk: gpmi-nand-evk@0 {
+				/* 配置扩展板LED3灯的gpio口 */
+				led_pin_gpio3_25:led_gpio3_25@0{
 					reg = <0>;
 					fsl,pinmux-ids = <
-						MX28_PAD_GPMI_CE1N__GPMI_CE1N
-						MX28_PAD_GPMI_RDY1__GPMI_READY1
+						MX28_PAD_I2C0_SDA__GPIO_3_25
 					>;
 					fsl,drive-strength = <MXS_DRIVE_4mA>;
 					fsl,voltage = <MXS_VOLTAGE_HIGH>;
 					fsl,pull-up = <MXS_PULL_DISABLE>;
 				};
-
-				lcdif_pins_evk: lcdif-evk@0 {
+				/* 配置扩展板LED4灯的gpio口 */
+				led_pin_gpio3_24:led_gpio3_24@0{
 					reg = <0>;
 					fsl,pinmux-ids = <
-						MX28_PAD_LCD_RD_E__LCD_VSYNC
-						MX28_PAD_LCD_WR_RWN__LCD_HSYNC
-						MX28_PAD_LCD_RS__LCD_DOTCLK
-						MX28_PAD_LCD_CS__LCD_ENABLE
+						MX28_PAD_I2C0_SCL__GPIO_3_24
 					>;
 					fsl,drive-strength = <MXS_DRIVE_4mA>;
 					fsl,voltage = <MXS_VOLTAGE_HIGH>;
 					fsl,pull-up = <MXS_PULL_DISABLE>;
 				};
-			};
-
-			lcdif@80030000 {
-				pinctrl-names = "default";
-				pinctrl-0 = <&lcdif_24bit_pins_a
-					     &lcdif_pins_evk>;
-				lcd-supply = <&reg_lcd_3v3>;
-				display = <&display0>;
-				status = "okay";
-
-				display0: display0 {
-					bits-per-pixel = <32>;
-					bus-width = <24>;
-
-					display-timings {
-						native-mode = <&timing0>;
-						timing0: timing0 {
-							clock-frequency = <33500000>;
-							hactive = <800>;
-							vactive = <480>;
-							hback-porch = <89>;
-							hfront-porch = <164>;
-							vback-porch = <23>;
-							vfront-porch = <10>;
-							hsync-len = <10>;
-							vsync-len = <10>;
-							hsync-active = <0>;
-							vsync-active = <0>;
-							de-active = <1>;
-							pixelclk-active = <0>;
-						};
-					};
+				/* 配置扩展板按键的gpio口 */
+				keys_pin:keys_pins_gpio@0{
+					fsl,pinmux-ids = <
+						MX28_PAD_LCD_D07__GPIO_1_7				/* KEY1 */
+						MX28_PAD_LCD_RD_E__GPIO_1_24			/* KEY2 */
+						MX28_PAD_LCD_WR_RWN__GPIO_1_25			/* KEY3 */
+					>;
+					fsl,drive-strength = <MXS_DRIVE_4mA>;
+					fsl,voltage = <MXS_VOLTAGE_HIGH>;			/* 默认为高电平 */
+					fsl,pull-up = <MXS_PULL_DISABLE>;			/* 上拉禁止 */
 				};
-			};
-
-			can0: can@80032000 {
-				pinctrl-names = "default";
-				pinctrl-0 = <&can0_pins_a>;
-				xceiver-supply = <&reg_can_3v3>;
-				status = "okay";
-			};
-
-			can1: can@80034000 {
-				pinctrl-names = "default";
-				pinctrl-0 = <&can1_pins_a>;
-				xceiver-supply = <&reg_can_3v3>;
-				status = "okay";
 			};
 		};
 
 		apbx@80040000 {
+			/* AP-283Demo板音频输入输出接口配置 */
 			saif0: saif@80042000 {
 				pinctrl-names = "default";
 				pinctrl-0 = <&saif0_pins_a>;
-				status = "okay";
-			};
-
-			saif1: saif@80046000 {
-				pinctrl-names = "default";
-				pinctrl-0 = <&saif1_pins_a>;
 				fsl,saif-master = <&saif0>;
 				status = "okay";
 			};
-
-			lradc@80050000 {
-				status = "okay";
-				fsl,lradc-touchscreen-wires = <4>;
-				fsl,ave-ctrl = <4>;
-				fsl,ave-delay = <2>;
-				fsl,settling = <10>;
-			};
-
-			i2c0: i2c@80058000 {
+			/* I2C0 用于加密电路,默认作为LED3和LED4的管脚使用，现在配置为LED3和LED4*/
+			/*i2c0: i2c@80058000 {
 				pinctrl-names = "default";
 				pinctrl-0 = <&i2c0_pins_a>;
 				status = "okay";
-
-				/*sgtl5000: codec@a {
-					compatible = "fsl,sgtl5000";
-					reg = <0x0a>;
-					VDDA-supply = <&reg_3p3v>;
-					VDDIO-supply = <&reg_3p3v>;
-					clocks = <&saif0>;
 				};*/
-
-				/*at24@51 {
-					compatible = "atmel,24c32";
-					pagesize = <32>;
-					reg = <0x51>;
-				};*/
-			};
-
+			/* AP-283Demo板音频和EEPROM的I2C接口配置 */
 			i2c1: i2c@8005a000 {
 				pinctrl-names = "default";
 				pinctrl-0 = <&i2c1_pins_a>;
 				status = "okay";
+				/* 音频编解码芯片配置 */
+				uda1380: codec@30 {
+					compatible = "nxp,uda1380";
+					reg = <0x30>;
+					VDDA-supply = <&reg_3p3v>;
+					VDDIO-supply = <&reg_3p3v>;
+					clocks = <&saif0>;
+				};
+				/* EEPROM芯片配置 */
+				cat24@a0 {
+					compatible = "mircochip,cat24c01";
+					/* cat24c01的页数为16 */
+					pagesize = <16>; 			
+					reg = <0xa0>;
+				};
 			};
-
+			/* AP-283Demo板LED1管脚 */
 			pwm: pwm@80064000 {
 				pinctrl-names = "default";
-				pinctrl-0 = <&pwm2_pins_a>;
+				pinctrl-0 = <&pwm3_pins_a>;
 				status = "okay";
 			};
-
+			/* 调试串口输出配置 */
 			duart: serial@80074000 {
 				pinctrl-names = "default";
-				/*pinctrl-0 = <&duart_pins_a>;*/
 				pinctrl-0 = <&duart_pins_b>;
 				status = "okay";
 			};
-
+			/* 扩展板UART0配置 */
 			auart0: serial@8006a000 {
 				pinctrl-names = "default";
-				/*pinctrl-0 = <&auart0_pins_a>;*/
 				pinctrl-0 = <&auart0_2pins_a>;
-				/*uart-has-rtscts;*/
 				status = "okay";
 			};
-
+			/* 扩展板UART1配置 */
 			auart1: serial@8006c000 {
 				pinctrl-names = "default";
 				pinctrl-0 = <&auart1_2pins_a>;
-				status = "okay";
-			};
-			auart2: serial@8006e000 {
-				pinctrl-names = "default";
-				pinctrl-0 = <&auart2_2pins_a>;
-				status = "okay";
-			};
-
-			auart3: serial@80070000 {
-				pinctrl-names = "default";
-				/*pinctrl-0 = <&auart3_pins_a>;*/
-				pinctrl-0 = <&auart3_2pins_a>;
 				status = "okay";
 			};
 
@@ -301,35 +216,34 @@
 	};
 
 	ahb@80080000 {
+		/* USB0配置 */
 		usb0: usb@80080000 {
 			pinctrl-names = "default";
-			pinctrl-0 = <&usb0_id_pins_a>;
+			/* USB0 ID管脚配置 */
+			pinctrl-0 = <&usb0_id_pins_b
+			/* USB0 OC管脚配置 */
+						&usb0_pins_a>;
 			vbus-supply = <&reg_usb0_vbus>;
 			status = "okay";
 		};
-
+		/* USB1配置 */
 		usb1: usb@80090000 {
+			pinctrl-names = "default";
+			/* USB1 OC管脚配置 */
+			pinctrl-0 = <&usb1_pins_a>;
 			vbus-supply = <&reg_usb1_vbus>;
 			status = "okay";
 		};
-
+		/* 以太网配置 */
 		mac0: ethernet@800f0000 {
 			phy-mode = "rmii";
 			pinctrl-names = "default";
 			pinctrl-0 = <&mac0_pins_a>;
 			phy-supply = <&reg_fec_3v3>;
-			/*phy-reset-gpios = <&gpio4 13 GPIO_ACTIVE_LOW>;*/
 			phy-reset-gpios = <&gpio1 26 GPIO_ACTIVE_LOW>;
 			phy-reset-duration = <100>;
 			status = "okay";
 		};
-
-		/*mac1: ethernet@800f4000 {
-			phy-mode = "rmii";
-			pinctrl-names = "default";
-			pinctrl-0 = <&mac1_pins_a>;
-			status = "okay";
-		};*/
 	};
 
 	regulators {
@@ -405,15 +319,14 @@
 		};
 
 	};
-
-	/*sound {
-		compatible = "fsl,imx28-evk-sgtl5000",
-			     "fsl,mxs-audio-sgtl5000";
-		model = "imx28-evk-sgtl5000";
-		saif-controllers = <&saif0 &saif1>;
-		audio-codec = <&sgtl5000>;
-	};*/
-
+	/* 音频编解码配置 */
+	sound {
+		compatible = "nxp,nxp-audio-uda1380";
+		model = "imx28-evk-uda1380";
+		saif-controllers = <&saif0>;
+		audio-codec = <&uda1380>;
+	};
+	/* 蜂鸣器配置 */
 	beep {
 		compatible = "gpio-beep";
 		pinctrl-names = "default";
@@ -421,34 +334,59 @@
 		beep-gpio = <&gpio2 6 0>;
 		status = "okay";
 	};
-
+	/* LED3，LED4 Heartbeat配置 */
 	leds {
 		compatible = "gpio-leds";
 		pinctrl-names = "default";
 		/*根据EasyARM-imx280A修改了心跳led和user led的gpio口*/
-		/*pinctrl-0 = <&led_pin_gpio3_5>;*/
-		pinctrl-0 = <&led_pin_gpio2_7>;
+		pinctrl-0 = <&led_pin_gpio2_7
+					&led_pin_gpio3_25
+					&led_pin_gpio3_24>;
+		led3-gpio = <&gpio3 25 0>;
+		led4-gpio = <&gpio3 24 0>;
+		status = "okay";
 
 		user {
 			label = "Heartbeat";
-			/*gpios = <&gpio3 5 0>;*/
 			gpios = <&gpio2 7 0>;
 			linux,default-trigger = "heartbeat";
 			/*使能心跳led*/
 			default-state = "on";
 		};
 
-		/*user {
-			label = "Heartbeat";
-			gpios = <&gpio3 5 0>;
-			linux,default-trigger = "heartbeat";
-		};*/
 	};
-
-	backlight {
-		compatible = "pwm-backlight";
-		pwms = <&pwm 2 5000000>;
-		brightness-levels = <0 4 8 16 32 64 128 255>;
+	/* KEY1,KEY2,KEY3配置 */
+	keys{
+		compatible = "mxs-key";
+		pinctrl-names = "default";
+		#address-cells = <1>;
+		#size-cells = <1>;
+		pinctrl-0 = <&keys_pin>;
+		interrupt-parent = <&gpio1>;
+		key1-gpio = <&gpio1 7 1>;		/* 默认为高电平 */
+		key2-gpio = <&gpio1 24 1>;
+		key3-gpio = <&gpio1 25 1>;
+		interrupts = <7  8				/* GPIO1_7低电平触发 */
+					  24 8				/* GPIO1_24低电平触发 */	
+					  25 8>;			/* GPIO1_25低电平触发 */
+		status = "okay";
+	};
+	/* LED1的管脚配置，可用LED1来测试CPU的PWM功能 */
+	pwm-led1 {
+		compatible = "pwm-led1";
+		/* PWM通道数(即索引号)和周期(单位：ns) */
+		pwms = <&pwm 3 5000000>; 
+		/* 亮度从0～255变化，表示正极性，占空比0～100%的变化，从255～0变化，表示负极性，占空比100%～0变化 */
+		brightness-levels = <0 4 8 16 32 64 128 255>;	
 		default-brightness-level = <6>;
 	};
+	/* AP-283Demo板ADC输入为配置完成，需要重新配置待定*/
+	/*&lradc {
+		status = "okay";
+		fsl,lradc-wires = <2>;
+
+		fsl,ave-ctrl = <4>;
+		fsl,ave-delay = <2>;
+		fsl,settling = <10>;
+	};*/
 };
