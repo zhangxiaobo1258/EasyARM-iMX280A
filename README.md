@@ -159,6 +159,18 @@ sudo sync
 
 - 在 `PC` 端串口启动时按 <kbd>空格键</kbd> 进入 `u-boot`,执行：
 
+- `u-boot` 设置本机 IP 地址和 TFTP 服务器 IP 地址
+
+```bash
+setenv ipaddr 10.10.10.55
+
+setenv serverip 10.10.10.254
+
+saveenv
+```
+
+- `u-boot` 通过 TFTP 刷 zImage
+
 ```bash
 tftp 0x42000000 zImage
 
@@ -189,4 +201,11 @@ ubi create rootfs
 tftp 0x42000000 rootfs.ubifs
 
 ubi write 0x42000000 rootfs $filesize
+```
+
+- root 帐号和密码
+
+```bash
+User：root
+Passwd：123456
 ```
