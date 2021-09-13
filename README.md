@@ -1,5 +1,5 @@
 # 1. EasyARM-iMX280A
-致远电子低成本 `imx280A` 开发板，`NXP` 官方网站提供 `u-boot` 版本：`u-boot-2009.08`，`Kernel`版本：`linux-2ernel`版本：linux-2.6.35.3`.
+致远电子低成本 `imx280A` 开发板，`NXP` 官方网站提供 `u-boot` 版本：`u-boot-2009.08`，`Kernel`版本：`linux-kernel`版本：linux-2.6.35.3`.
 
 注意： 开发板网线直连电脑有时候 `ping` 不通，所以建议使用交换机或者路由器
 
