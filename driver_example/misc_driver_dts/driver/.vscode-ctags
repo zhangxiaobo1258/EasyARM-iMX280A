@@ -1,0 +1,42 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	//
+ARCH_TYPE	Makefile	/^ARCH_TYPE := arm$/;"	m
+AR_PATH	Makefile	/^AR_PATH	  := \/home\/davinci\/Projects\/buildroot-2020.02.5\/output\/host\/bin\/arm-buildroot-li/;"	m
+COMPILE	Makefile	/^COMPILE	  := \/home\/davinci\/Projects\/buildroot-2020.02.5\/output\/host\/bin\/arm-buildroot-li/;"	m
+KDIR	Makefile	/^KDIR      := \/home\/davinci\/Projects\/linux-4.15.12\/$/;"	m
+LD_PATH	Makefile	/^LD_PATH	  := \/home\/davinci\/Projects\/buildroot-2020.02.5\/output\/host\/bin\/arm-buildroot-li/;"	m
+LEDDEV_CNT	leddriver.c	/^#define LEDDEV_CNT	/;"	d	file:
+LEDDEV_MINOR	leddriver.c	/^#define LEDDEV_MINOR	/;"	d	file:
+LEDDEV_NAME	leddriver.c	/^#define LEDDEV_NAME	/;"	d	file:
+LEDOFF	leddriver.c	/^#define LEDOFF	/;"	d	file:
+LEDON	leddriver.c	/^#define LEDON	/;"	d	file:
+PWD	Makefile	/^PWD       := $(shell pwd)$/;"	m
+all	Makefile	/^all:$/;"	t
+clean	Makefile	/^clean:$/;"	t
+devid	leddriver.c	/^	dev_t devid;					\/* 设备号 *\/$/;"	m	struct:leddev_dev	typeref:typename:dev_t	file:
+led0	leddriver.c	/^	int led0;						\/* LED的GPIO标号 *\/$/;"	m	struct:leddev_dev	typeref:typename:int	file:
+led_driver	leddriver.c	/^static struct platform_driver led_driver = {$/;"	v	typeref:struct:platform_driver	file:
+led_exit	leddevice.c	/^static void __exit led_exit(void)  $/;"	f	typeref:typename:void __exit	file:
+led_exit	leddriver.c	/^static void __exit led_exit(void)  $/;"	f	typeref:typename:void __exit	file:
+led_fops	leddriver.c	/^static const struct file_operations led_fops = $/;"	v	typeref:typename:const struct file_operations	file:
+led_init	leddevice.c	/^static int __init led_init(void)  $/;"	f	typeref:typename:int __init	file:
+led_init	leddriver.c	/^static int __init led_init(void)  $/;"	f	typeref:typename:int __init	file:
+led_ioctl	leddriver.c	/^static long led_ioctl(struct file *file, unsigned int cmd, unsigned long arg)$/;"	f	typeref:typename:long	file:
+led_miscdev	leddriver.c	/^static struct miscdevice led_miscdev = {$/;"	v	typeref:struct:miscdevice	file:
+led_of_match	leddriver.c	/^static const struct of_device_id led_of_match[] = {$/;"	v	typeref:typename:const struct of_device_id[]	file:
+led_open	leddriver.c	/^static int led_open(struct inode *inode,struct file *filp )$/;"	f	typeref:typename:int	file:
+led_probe	leddriver.c	/^static int led_probe(struct platform_device *dev)$/;"	f	typeref:typename:int	file:
+led_read	leddriver.c	/^int led_read(struct file *filp,char __user *buf,size_t cnt,loff_t *offt)$/;"	f	typeref:typename:int
+led_release	leddriver.c	/^static int led_release(struct inode *inode,struct file *filp )$/;"	f	typeref:typename:int	file:
+led_remove	leddriver.c	/^static int led_remove(struct platform_device *dev)$/;"	f	typeref:typename:int	file:
+led_write	leddriver.c	/^static ssize_t led_write(struct file *filp,const char *buf,size_t cnt,loff_t *offt)$/;"	f	typeref:typename:ssize_t	file:
+leddev	leddriver.c	/^struct leddev_dev leddev;			\/* led设备 *\/$/;"	v	typeref:struct:leddev_dev
+leddev_dev	leddriver.c	/^struct leddev_dev{$/;"	s	file:
+leddevice	leddevice.c	/^static struct platform_device leddevice = {$/;"	v	typeref:struct:platform_device	file:
+node	leddriver.c	/^	struct device_node *node;		\/* LED设备节点 *\/$/;"	m	struct:leddev_dev	typeref:struct:device_node *	file:
+obj-m	Makefile	/^obj-m     := leddevice.o leddriver.o$/;"	m

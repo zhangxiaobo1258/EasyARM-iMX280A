@@ -1,0 +1,6 @@
+config UDA1380
+        tristate "uda1380 test "
+    depends on I2C
+        default y
+        help
+                Select this option if your board need run audio

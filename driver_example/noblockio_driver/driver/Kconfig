@@ -1,0 +1,6 @@
+config KEY
+        tristate "KEY Test "
+    depends on GPIOLIB
+        default y
+        help
+                Select this option if your Touch-S board needs to run GLOBALMEM

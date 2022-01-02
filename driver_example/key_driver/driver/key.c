@@ -123,7 +123,7 @@ static int __init mykey_init(void)
 	atomic_set(&key.keyvalue,0x00);	/* 初始化原子变量 */
 	/* 获取设备树中的属性数据 */
 	/* 1.获取设备节点：key */
-	key.nd = of_find_node_by_path("/keys-leds");
+	key.nd = of_find_node_by_path("/keys");
 	if(key.nd == NULL){
 		printk("key node can not found!\r\n");
 		return -EINVAL;
@@ -131,7 +131,7 @@ static int __init mykey_init(void)
 		printk("key node has been found!\r\n");
 	}
 	/* 2.获取设备树中gpio的属性 */
-	key.key_gpio = of_get_named_gpio(key.nd,"key1-gpio",0);
+	key.key_gpio = of_get_named_gpio(key.nd,"keys-gpio",0);
 	if(key.key_gpio <0 ){
 		printk("key1-gpio find failed !\r\n");
 		return -EINVAL;

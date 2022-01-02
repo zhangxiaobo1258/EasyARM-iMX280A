@@ -1,0 +1,12 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+CFLAGS	Makefile	/^CFLAGS = -Wall -g -o2 $/;"	m
+COMPILE	Makefile	/^COMPILE	  := \/home\/davinci\/Projects\/buildroot-2020.02.5\/output\/host\/bin\/arm-buildroot-linux-uclibcgnueabi-$/;"	m
+EXEC	Makefile	/^EXEC = key$/;"	m
+OBJS	Makefile	/^OBJS = key.o$/;"	m
+SRC	Makefile	/^SRC  = key.c$/;"	m
+main	key.c	/^int main(int argc,char *argv[])$/;"	f

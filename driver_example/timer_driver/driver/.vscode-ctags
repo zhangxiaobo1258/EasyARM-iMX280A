@@ -1,0 +1,49 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	//
+ARCH_TYPE	Makefile	/^ARCH_TYPE := arm$/;"	m
+AR_PATH	Makefile	/^AR_PATH	  := \/home\/davinci\/Projects\/buildroot-2020.02.5\/output\/host\/bin\/arm-buildroot-li/;"	m
+CLOSE_CMD	timer.c	/^#define CLOSE_CMD /;"	d	file:
+COMPILE	Makefile	/^COMPILE	  := \/home\/davinci\/Projects\/buildroot-2020.02.5\/output\/host\/bin\/arm-buildroot-li/;"	m
+KDIR	Makefile	/^KDIR      := \/home\/davinci\/Projects\/linux-4.15.12\/$/;"	m
+LD_PATH	Makefile	/^LD_PATH	  := \/home\/davinci\/Projects\/buildroot-2020.02.5\/output\/host\/bin\/arm-buildroot-li/;"	m
+LEDOFF	timer.c	/^#define LEDOFF /;"	d	file:
+LEDON	timer.c	/^#define LEDON /;"	d	file:
+OPEN_CMD	timer.c	/^#define OPEN_CMD /;"	d	file:
+PWD	Makefile	/^PWD       := $(shell pwd)$/;"	m
+SETPERIOD_CMD	timer.c	/^#define SETPERIOD_CMD /;"	d	file:
+TIMER_CNT	timer.c	/^#define TIMER_CNT /;"	d	file:
+TIMER_NAME	timer.c	/^#define TIMER_NAME /;"	d	file:
+____versions	timer.mod.c	/^static const struct modversion_info ____versions[]$/;"	v	typeref:typename:const struct modversion_info[]__used	file:
+__cached_/bin/bash_./scripts/gcc-goto.sh_/home/davinci/Projects/buildroot-2020.02.5/output/host/bin/arm-buildroot-linux-uclibcgnueabi-gcc_-Wall_-Wundef_-Wstrict-prototypes_-Wno-trigraphs_-fno-strict-aliasing_-fno-common_-fshort-wchar_-Werror-implicit-function-declaration_-Wno-format-security_-std_gnu89_-fno-PIE_-fno-dwarf2-cfi-asm_-fno-ipa-sra_-mabi_aapcs-linux_-mno-thumb-interwork_-mfpu_vfp_-funwind-tables_-marm_-D__LINUX_ARM_ARCH___5_-march_armv5te_-mtune_arm9tdmi__-msoft-float_-Uarm_-fno-delete-null-pointer-checks_-Wno-frame-address_-Wno-format-truncation_-Wno-format-overflow_-Wno-int-in-bool-context_-O2__--param_allow-store-data-races_0	.cache.mk	/^__cached_\/bin\/bash_.\/scripts\/gcc-goto.sh_\/home\/davinci\/Projects\/buildroot-2020.02.5\/out/;"	m
+__cached_/bin/bash_./scripts/gcc-version.sh_/home/davinci/Projects/buildroot-2020.02.5/output/host/bin/arm-buildroot-linux-uclibcgnueabi-gcc	.cache.mk	/^__cached_\/bin\/bash_.\/scripts\/gcc-version.sh_\/home\/davinci\/Projects\/buildroot-2020.02.5\//;"	m
+__cached_/home/davinci/Projects/buildroot-2020.02.5/output/host/bin/arm-buildroot-linux-uclibcgnueabi-gcc_-print-file-name_include	.cache.mk	/^__cached_\/home\/davinci\/Projects\/buildroot-2020.02.5\/output\/host\/bin\/arm-buildroot-linux-/;"	m
+__module_depends	timer.mod.c	/^static const char __module_depends[]$/;"	v	typeref:typename:const char[]__used	file:
+__this_module	timer.mod.c	/^__visible struct module __this_module$/;"	v	typeref:struct:module
+all	Makefile	/^all:$/;"	t
+cdev	timer.c	/^    struct cdev cdev;                           \/* cdev *\/$/;"	m	struct:timer_dev	typeref:struct:cdev	file:
+class	timer.c	/^    struct class *class;                        \/* 类 *\/$/;"	m	struct:timer_dev	typeref:struct:class *	file:
+clean	Makefile	/^clean:$/;"	t
+device	timer.c	/^    struct device *device;                      \/* 设备 *\/$/;"	m	struct:timer_dev	typeref:struct:device *	file:
+devid	timer.c	/^    dev_t devid;                                \/* 设备号 *\/$/;"	m	struct:timer_dev	typeref:typename:dev_t	file:
+led_gpio	timer.c	/^    int led_gpio;                               \/* LED所使用的GPIO编号 *\/$/;"	m	struct:timer_dev	typeref:typename:int	file:
+lock	timer.c	/^    spinlock_t lock;                              \/* 定义自旋锁 *\/$/;"	m	struct:timer_dev	typeref:typename:spinlock_t	file:
+major	timer.c	/^    int major;                                  \/* 主设备号 *\/$/;"	m	struct:timer_dev	typeref:typename:int	file:
+minor	timer.c	/^    int minor;                                  \/* 次设备号 *\/$/;"	m	struct:timer_dev	typeref:typename:int	file:
+nd	timer.c	/^    struct device_node *nd;                     \/* 设备节点 *\/$/;"	m	struct:timer_dev	typeref:struct:device_node *	file:
+obj-m	Makefile	/^obj-m     := timer.o$/;"	m
+timer	timer.c	/^    struct timer_list timer;                    \/* 定义一个定时器 *\/$/;"	m	struct:timer_dev	typeref:struct:timer_list	file:
+timer_dev	timer.c	/^struct timer_dev{$/;"	s	file:
+timer_exit	timer.c	/^static void __exit timer_exit(void)$/;"	f	typeref:typename:void __exit	file:
+timer_function	timer.c	/^void timer_function(unsigned long arg)$/;"	f	typeref:typename:void
+timer_init	timer.c	/^static int __init timer_init(void)$/;"	f	typeref:typename:int __init	file:
+timer_nolocked_ioctl	timer.c	/^static long timer_nolocked_ioctl(struct file *filp,unsigned int cmd , unsigned  long arg)$/;"	f	typeref:typename:long	file:
+timer_open	timer.c	/^static int timer_open(struct inode *inode,struct file *filp)$/;"	f	typeref:typename:int	file:
+timer_release	timer.c	/^static int timer_release(struct inode *inode,struct file *filp )$/;"	f	typeref:typename:int	file:
+timerdev	timer.c	/^struct timer_dev timerdev;                      \/* timer设备 *\/$/;"	v	typeref:struct:timer_dev
+timerperiod	timer.c	/^    int timerperiod;                            \/* 定时周期，单位为ms *\/$/;"	m	struct:timer_dev	typeref:typename:int	file:
+timers_fops	timer.c	/^static struct file_operations timers_fops = {$/;"	v	typeref:struct:file_operations	file:

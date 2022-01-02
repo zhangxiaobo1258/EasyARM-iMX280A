@@ -1,0 +1,6 @@
+config GLOBALMEM
+        tristate "GLOBALMEM ......"
+    depends on GPIOLIB
+        default y
+        help
+                Select this option if your Touch-S board needs to run GLOBALMEM
