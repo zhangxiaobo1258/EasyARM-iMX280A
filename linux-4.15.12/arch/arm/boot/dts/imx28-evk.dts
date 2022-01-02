@@ -177,7 +177,11 @@
 					compatible = "mircochip,cat24c01";
 					/* cat24c01的页数为16 */
 					pagesize = <16>; 			
+<<<<<<< HEAD
 					reg = <0xa0>;
+=======
+					reg = <0x50>;
+>>>>>>> eace467778f6e8ab9e15fd6bd091b1bdc4e069c5
 				};
 			};
 			/* AP-283Demo板LED1管脚 */
